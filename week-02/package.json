@@ -1,3 +1,13 @@
 {
-    "type": "module"
+    "type": "module",
+    "name": "week-02",
+    "version": "1.0.0",
+    "description": "### 1. Node.js簡介",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
