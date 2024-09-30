@@ -69,7 +69,7 @@
     在 app.js 的檔案中加上這個變更：
     
     ```jsx
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 4000;
     ```
     
     `process.env.PORT` 會讀取名為 `PORT` 的環境變數，如果這個環境變數不存在或無法使用，就會使用 預設值 3000。
@@ -82,10 +82,10 @@
     npm install dotenv
     ```
     
-    在專案根目錄下建立一個 `process.env` 文件，並在其中設定 `PORT` 值：
+    在專案根目錄下建立一個 `.env` 文件，並在其中設定 `PORT` 值：
     
     ```bash
-    PORT = 4000
+    PORT = 3000
     ```
     
     然後在 app.js 最前面加入 dotenv 以讀取環境變數
