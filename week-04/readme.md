@@ -1,6 +1,6 @@
 # W4
 
-1. i**nstance public IP**: 13.238.161.172
+1. i**nstance public IP**: [http://13.238.161.172](http://13.238.161.172)
 2. **What is instance type ？**
     
     VM 中的硬體配置稱之為 instance type，不同的工作負載適合使用不同的 instance type ，像是計算密集的工作可能就需要更多的 CPU 空間。
@@ -34,40 +34,47 @@
     
     用 Nginx 當作 Express 開發的做反向代理可以優化性能跟增加安全性，更專注於處理業務邏輯以及提升系統效能。當流量增加時，Nginx 能夠把請求分散到多個 Express 上，同時 Nginx 可以緩存靜態文件，都可以有效減少伺服器的負擔。Nginx 也可以作為防火牆，限制不必要的訪問請求，以加強安全性
     
-6. **步驟 9 的 Nginx 設定檔範例：**
+6. **步驟 9 的 範例：**
 
 ```
 server {
-    listen 80;
-    server_name 13.238.161.172;
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-    location / {
-        proxy_pass http://localhost:3000; 
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
+        server_name _;
+
+        location / {
+                proxy_pass http://localhost:4000;
+
+                proxy_http_version 1.1;
+
+                proxy_set_header Upgrade $http_upgrade;
+
+                proxy_set_header Connection 'upgrade';
+
+                proxy_set_header Host $host;
+
+                proxy_cache_bypass $http_upgrade;
+                
+                try_files $uri $uri/ =404;
+              
+        }
 ```
 
 1. **Security Group 是什麼？用途為何？有什麼設定原則嗎？**
     
-    Security Group 是雲端平台中的防火牆規則，用於控制進出 instance 的網路流量。可以設定允許或拒絕特定 IP 或端口範圍的訪問。設定原則應根據應用需求進行：
+    在AWS中可以定義的防火牆規則，用於管控instance的網路流量，例如：
     
-    - 僅開放必要的端口（如 HTTP 80, HTTPS 443）
+    - 僅開放必要的端口（如 HTTP 80）
     - 限制管理端口（如 SSH 22）僅允許特定 IP
 2. **sudo 是什麼？為什麼有時需要加上 sudo，有時不需要？**
     
     使用`sudo` 指令可以用最高的權限執行指令，通常安裝軟體或是修改系統內部配置會需要。
     
 3. **Nginx 的 Log 檔案在哪裡？怎麼找到的？怎麼看 Nginx 的 Log？**
-    
-    Nginx 的默認 Log 檔案路徑通常在：
-    
-    - 訪問日誌：`/var/log/nginx/access.log`
-    - 錯誤日誌：`/var/log/nginx/error.log`
-    可以使用命令 `tail -f /var/log/nginx/access.log` 實時查看訪問記錄，或使用 `less` 或 `cat` 來檢視歷史記錄。
+    - Access Log：/var/log/nginx/access.log
+    - Error Log：/var/log/nginx/error.log
+    - 
 4. **其他遇到的問題**
 - modules 不上傳到底可不行？截至交作業前尚未解決
     - Nginx 的設定檔錯誤
@@ -89,3 +96,28 @@ server {
     - nginx log
         
         https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
+        
+    
+    scp -i `/`C:`/`Users`/`Nina`/`Desktop`/`key`/`gitkey.pem `/`C:`/`Users`/`Nina`/`Desktop`/`key`/certificate.crt` ubuntu@[@13.238.161.172](mailto:ubuntu@13.238.161.172):`/home/ubuntu/`
+    
+
+- `i /path/to/your/key.pem`：指定您用于连接EC2实例的密钥文件。
+    - `/`C:`/`Users`/`Nina`/`Desktop`/`key`/`gitkey.pem
+- `/path/to/your/certificate.crt`：您本地计算机上证书文件的路径。
+    - `/`C:`/`Users`/`Nina`/`Desktop`/`key`/certificate.crt`
+- `ubuntu@your_ec2_public_ip`：替换为您的EC2实例的公共IP地址或域名。
+    - [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172)
+- `/path/to/destination/`：指定在EC2实例上的目标目录（例如，可以使用 `/home/ubuntu/`）
+    - `/home/ubuntu/`
+
+scp -i /C:/Users/Nina/Desktop/key/gitkey.pem /C:/Users/Nina/Desktop/key/certificate.crt ubuntu@@13.238.161.172:/home/ubuntu
+
+scp  /C:/Users/Nina/Desktop/key/certificate.crt ubuntu@13.238.161.172:/home/ubuntu
+
+scp -i "C:/Users/Nina/Desktop/key/gitkey.pem" "C:/Users/Nina/Desktop/key/private.key" [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172):/home/ubuntu/
+
+scp -i "C:/Users/Nina/Desktop/key/gitkey.pem" "C:/Users/Nina/Desktop/key/ca_bundle.crt" [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172):/home/ubuntu/
+
+ssl_certificate /home/ubuntu/certificate.crt;
+ssl_certificate_key /home/ubuntu/private.key;
+ssl_trusted_certificate /home/ubuntu/ca_bundle.crt;
