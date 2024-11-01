@@ -1,6 +1,7 @@
 # W4
 
-1. i**nstance public IP**: [http://13.238.161.172](http://13.238.161.172)
+1. i**nstance public IP**: [http://13.236.60.141](http://13.238.161.172)
+
 2. **What is instance type ？**
     
     VM 中的硬體配置稱之為 instance type，不同的工作負載適合使用不同的 instance type ，像是計算密集的工作可能就需要更多的 CPU 空間。
