@@ -1,5 +1,5 @@
 ### 回答問題
-1.  **你的網址**:  https://www.nina.papperhelper.xyz
+1.  **你的網址**:  https://nina.papperhelper.xyz
 2. **你在哪裡購買網域的**
 在godaddy上購入
 
