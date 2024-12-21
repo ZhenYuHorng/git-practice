@@ -1,6 +1,6 @@
 # W4
 
-1. i**nstance public IP**: [http://13.236.60.141](http://13.238.161.172)
+1. i**nstance public IP**: [http://13.236.84.124](http://13.236.84.124)
 
 2. **What is instance type ？**
     
@@ -99,26 +99,3 @@ server {
         https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
         
     
-    scp -i `/`C:`/`Users`/`Nina`/`Desktop`/`key`/`gitkey.pem `/`C:`/`Users`/`Nina`/`Desktop`/`key`/certificate.crt` ubuntu@[@13.238.161.172](mailto:ubuntu@13.238.161.172):`/home/ubuntu/`
-    
-
-- `i /path/to/your/key.pem`：指定您用于连接EC2实例的密钥文件。
-    - `/`C:`/`Users`/`Nina`/`Desktop`/`key`/`gitkey.pem
-- `/path/to/your/certificate.crt`：您本地计算机上证书文件的路径。
-    - `/`C:`/`Users`/`Nina`/`Desktop`/`key`/certificate.crt`
-- `ubuntu@your_ec2_public_ip`：替换为您的EC2实例的公共IP地址或域名。
-    - [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172)
-- `/path/to/destination/`：指定在EC2实例上的目标目录（例如，可以使用 `/home/ubuntu/`）
-    - `/home/ubuntu/`
-
-scp -i /C:/Users/Nina/Desktop/key/gitkey.pem /C:/Users/Nina/Desktop/key/certificate.crt ubuntu@@13.238.161.172:/home/ubuntu
-
-scp  /C:/Users/Nina/Desktop/key/certificate.crt ubuntu@13.238.161.172:/home/ubuntu
-
-scp -i "C:/Users/Nina/Desktop/key/gitkey.pem" "C:/Users/Nina/Desktop/key/private.key" [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172):/home/ubuntu/
-
-scp -i "C:/Users/Nina/Desktop/key/gitkey.pem" "C:/Users/Nina/Desktop/key/ca_bundle.crt" [ubuntu@13.238.161.172](mailto:ubuntu@13.238.161.172):/home/ubuntu/
-
-ssl_certificate /home/ubuntu/certificate.crt;
-ssl_certificate_key /home/ubuntu/private.key;
-ssl_trusted_certificate /home/ubuntu/ca_bundle.crt;
